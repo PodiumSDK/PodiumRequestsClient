@@ -7,8 +7,8 @@ on:
   pull_request:
 
 jobs:
-  build:
-    name: Build
+  build_and_test:
+    name: Build and Test
     runs-on: macos-latest
 
     steps:
@@ -19,36 +19,6 @@ jobs:
 
       - name: Build package
         run: swift build --configuration debug
-
-      - name: Archive build artifacts
-        run: |
-          mkdir -p build-artifacts
-          cp -R .build build-artifacts/
-        shell: bash
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: swift-build
-          path: .
-          retention-days: 1
-
-  test:
-    name: Run Tests
-    runs-on: macos-latest
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: swift-build
-          path: .
-
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode.app
 
       - name: Run tests using prebuilt artifacts
         run: swift test --skip-build
