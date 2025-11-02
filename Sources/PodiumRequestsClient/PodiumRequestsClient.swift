@@ -14,13 +14,13 @@ public class PodiumRequestsClient {
   private let apiKey: String
 
   // MARK: Lifecycle
-  init(baseURL: String, apiKey: String) {
+  public init(baseURL: String, apiKey: String) {
     self.baseURL = baseURL
     self.apiKey = apiKey
   }
 
-  // MARK: Public Methods
-  func request<E, T>(
+  // MARK: Private Methods
+  private func request<E, T>(
     endpoint: E,
     type: T.Type,
     method: HTTPMethod = .get,
@@ -32,7 +32,7 @@ public class PodiumRequestsClient {
       parameters: parameters,
       encoding: method == .get ? URLEncoding.default : JSONEncoding.default,
       headers: HTTPHeaders([
-        HTTPHeader(name: "Authorization", value: "Bearer \(apiKey)")
+        HTTPHeader(name: "Authorization", value: "Bearer " + apiKey)
       ])
     )
     let response = await task.serializingDecodable(type, decoder: JSONDecoder.podium).response
@@ -43,5 +43,78 @@ public class PodiumRequestsClient {
     case .failure(let error):
       throw error
     }
+  }
+
+  // MARK: Public Methods
+  public func getAllSessions() async throws -> [SessionModel] {
+    let domain = try await request(
+      endpoint: Endpoints.Sessions.getAll,
+      type: [SessionDomain].self
+    )
+
+    return domain.map { SessionMapper.map(from: $0) }
+  }
+
+  public func getAllSessions(sessionKey: Int) async throws -> SessionModel {
+    let domain = try await request(
+      endpoint: Endpoints.Sessions.getOne(sessionKey: sessionKey),
+      type: SessionDomain.self
+    )
+
+    return SessionMapper.map(from: domain)
+  }
+
+  public func getAllRaceControl(sessionKey: Int) async throws -> [RaceControlModel] {
+    let domain = try await request(
+      endpoint: Endpoints.RaceControl.getAll(sessionKey: sessionKey),
+      type: [RaceControlDomain].self
+    )
+
+    return domain.map { RaceControlMapper.map(from: $0) }
+  }
+
+  public func getAllCars(sessionKey: Int) async throws -> [CarModel] {
+    let domain = try await request(
+      endpoint: Endpoints.Cars.getAll(sessionKey: sessionKey),
+      type: [CarDomain].self
+    )
+
+    return domain.map { CarMapper.map(from: $0) }
+  }
+
+  public func getAllCarLocation(sessionKey: Int, car: Int) async throws -> [CarLocationModel] {
+    let domain = try await request(
+      endpoint: Endpoints.Cars.getLocations(sessionKey: sessionKey, driver: car),
+      type: [CarLocationDomain].self
+    )
+
+    return domain.map { CarMapper.map(from: $0) }
+  }
+
+  public func getAllCarData(sessionKey: Int, car: Int) async throws -> [CarDataModel] {
+    let domain = try await request(
+      endpoint: Endpoints.Cars.getData(sessionKey: sessionKey, driver: car),
+      type: [CarDataDomain].self
+    )
+
+    return domain.map { CarMapper.map(from: $0) }
+  }
+
+  public func getAllDrivers(sessionKey: Int) async throws -> [DriverModel] {
+    let domain = try await request(
+      endpoint: Endpoints.Drivers.getAll(sessionKey: sessionKey),
+      type: [DriverDomain].self
+    )
+
+    return domain.map { DriverMapper.map(domain: $0) }
+  }
+
+  public func getDriver(sessionKey: Int, driver: Int) async throws -> DriverModel {
+    let domain = try await request(
+      endpoint: Endpoints.Drivers.get(sessionKey: sessionKey, driver: driver),
+      type: DriverDomain.self
+    )
+
+    return DriverMapper.map(domain: domain)
   }
 }

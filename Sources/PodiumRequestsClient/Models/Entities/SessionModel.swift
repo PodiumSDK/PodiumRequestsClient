@@ -8,25 +8,25 @@
 import Foundation
 
 @Observable
-class SessionModel: Identifiable, Equatable {
+public class SessionModel: Identifiable, Equatable {
   // MARK: Properties
   /// The session key.
-  var key: Int
+  public var key: Int
 
   /// The session location.
-  var location: String
+  public var location: String
 
   /// The session name.
-  var name: String
+  public var name: String
 
   /// The session start date.
-  var start: Date
+  public var start: Date
 
   /// The session end date.
-  var end: Date
+  public var end: Date
 
   // MARK: Lifecycle
-  init(key: Int, location: String, name: String, start: Date, end: Date) {
+  public init(key: Int, location: String, name: String, start: Date, end: Date) {
     self.key = key
     self.location = location
     self.name = name
@@ -35,7 +35,7 @@ class SessionModel: Identifiable, Equatable {
   }
 
   // MARK: Methods
-  static func == (lhs: SessionModel, rhs: SessionModel) -> Bool {
+  public static func == (lhs: SessionModel, rhs: SessionModel) -> Bool {
     lhs.key == rhs.key
   }
 }

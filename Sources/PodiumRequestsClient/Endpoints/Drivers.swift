@@ -13,6 +13,12 @@ extension Endpoints {
     /// - Parameters:
     ///   - sessionKey The unique session key to get all the drivers.
     case getAll(sessionKey: Int)
+
+    /// Get a driver for a specific session.
+    /// - Parameters:
+    ///   - sessionKey The unique session key to get all the drivers.
+    ///   - driver The driver number to get.
+    case get(sessionKey: Int, driver: Int)
   }
 }
 
@@ -21,6 +27,8 @@ extension Endpoints.Drivers: PodiumEndpoint {
     switch self {
     case .getAll(let sessionKey):
       "/sessions/\(sessionKey)/drivers"
+    case .get(let sessionKey, let driver):
+      "/sessions/\(sessionKey)/drivers/\(driver)"
     }
   }
 }

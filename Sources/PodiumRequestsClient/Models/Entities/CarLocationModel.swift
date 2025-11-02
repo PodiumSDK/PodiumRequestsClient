@@ -8,16 +8,16 @@
 import Foundation
 import Spatial
 
-struct CarLocationModel: Identifiable, Hashable {
+public struct CarLocationModel: Identifiable, Hashable {
   // MARK: Computed Properties
-  var id: String {
+  public var id: String {
     DateHelper.toIdentifier(date: date)
   }
 
   // MARK: Properties
   /// The car location date
-  let date: Date
+  public let date: Date
 
   /// The car location coordinates
-  let location: Point3D
+  public let location: Point3D
 }

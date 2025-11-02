@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "PodiumRequestsClient",
     platforms: [
-      .iOS(.v13),
+      .iOS(.v17),
       .visionOS(.v1)
     ],
     products: [

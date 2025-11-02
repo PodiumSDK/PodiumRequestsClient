@@ -7,32 +7,32 @@
 
 import Foundation
 
-class DriverModel: Hashable, Equatable, Identifiable {
+public class DriverModel: Hashable, Equatable, Identifiable {
   // MARK: Properties
-  var id: Int {
+  public var id: Int {
     number
   }
 
   /// The driver firstname.
-  let firstname: String
+  public let firstname: String
 
   /// The driver lastname.
-  let lastname: String
+  public let lastname: String
 
   /// The driver acronym.
-  let acronym: String
+  public let acronym: String
 
   /// The driver number.
-  let number: Int
+  public let number: Int
 
   /// The driver team.
-  let team: TeamModel
+  public let team: TeamModel
 
   /// The driver image, if any.
-  let image: String?
+  public let image: String?
 
   // MARK: Lifecycle
-  init(firstname: String, lastname: String, acronym: String, number: Int, team: TeamModel, image: String?) {
+  public init(firstname: String, lastname: String, acronym: String, number: Int, team: TeamModel, image: String?) {
     self.firstname = firstname
     self.lastname = lastname
     self.acronym = acronym
@@ -43,7 +43,7 @@ class DriverModel: Hashable, Equatable, Identifiable {
 
   // MARK: Static methods
   /// Compare two `DriverModel` using their `number` property.
-  static func == (lhs: DriverModel, rhs: DriverModel) -> Bool {
+  public static func == (lhs: DriverModel, rhs: DriverModel) -> Bool {
     return lhs.number == rhs.number
   }
 

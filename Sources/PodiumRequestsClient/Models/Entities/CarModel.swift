@@ -9,23 +9,23 @@ import Foundation
 
 /// Represent a car during a session.
 /// - Note: The car is identified by its `number` property.
-struct CarModel: Identifiable, Equatable, Hashable {
+public struct CarModel: Identifiable, Equatable, Hashable {
   // MARK: Computed Properties
   /// The car unique identifier.
-  var id: Int {
+  public var id: Int {
     number
   }
 
   // MARK: Properties
   /// The car unique number.
-  let number: Int
+  public let number: Int
 
   /// The current driver in the car.
-  let driver: DriverModel
+  public let driver: DriverModel
 
   // MARK: Static Methods
   /// Compare two `CarModel` using their unique number.
-  static func == (lhs: CarModel, rhs: CarModel) -> Bool {
+  public static func == (lhs: CarModel, rhs: CarModel) -> Bool {
     lhs.number == rhs.number
   }
 }

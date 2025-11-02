@@ -8,19 +8,19 @@
 import Foundation
 import SwiftUI
 
-struct TeamModel: Identifiable {
+public struct TeamModel: Identifiable {
   // MARK: Properties
   /// The team unique identifier, which is here the team name.
-  var id: String {
+  public var id: String {
     name
   }
 
   /// The team name.
-  let name: String
+  public let name: String
 
   /// The team color..
-  let color: Color
+  public let color: Color
 
   /// The team logo image URL.
-  let image: URL?
+  public let image: URL?
 }

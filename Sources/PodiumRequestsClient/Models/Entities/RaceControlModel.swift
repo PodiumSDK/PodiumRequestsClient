@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum RaceControlCategory: String {
+public enum RaceControlCategory: String {
   case drs = "Drs"
   case other = "Other"
   case flag = "Flag"
 
-  init(rawValue: String) {
+  public init(rawValue: String) {
     switch rawValue {
     case RaceControlCategory.drs.rawValue:
       self = .drs
@@ -24,27 +24,27 @@ enum RaceControlCategory: String {
   }
 }
 
-enum RaceControlFlag: String {
+public enum RaceControlFlag: String {
   case yellow = "YELLOW"
   case doubleYellow = "DOUBLE YELLOW"
   case red = "RED"
   case green = "GREEN"
 }
 
-struct RaceControlModel: Identifiable {
-  var id: String {
+public struct RaceControlModel: Identifiable {
+  public var id: String {
     DateHelper.toIdentifier(date: date)
   }
 
-  let category: RaceControlCategory
+  public let category: RaceControlCategory
 
-  let date: Date
+  public let date: Date
 
-  let flag: RaceControlFlag?
+  public let flag: RaceControlFlag?
 
-  let sector: Int?
+  public let sector: Int?
 
-  let lap: Int?
+  public let lap: Int?
 
-  let message: String
+  public let message: String
 }

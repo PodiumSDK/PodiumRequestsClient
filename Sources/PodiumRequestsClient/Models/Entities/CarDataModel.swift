@@ -7,30 +7,30 @@
 
 import Foundation
 
-struct CarDataModel: Identifiable, Hashable {
+public struct CarDataModel: Identifiable, Hashable {
   /// The car data model unique identifier.
-  var id: String {
+  public var id: String {
     DateHelper.toIdentifier(date: date)
   }
 
   /// The date of the car data.
-  let date: Date
+  public let date: Date
 
   /// The brake percentage.
-  let brake: Int
+  public let brake: Int
 
   /// The throttle percentage
-  let throttle: Int
+  public let throttle: Int
 
   /// The current car gear.
-  let gear: Int
+  public let gear: Int
 
   /// The RPM of the engine.
-  let rpm: Int
+  public let rpm: Int
 
   /// The speed of the car, in km/h.
-  let speed: Int
+  public let speed: Int
 
   /// The DRS activation state
-  let drs: Bool?
+  public let drs: Bool?
 }
