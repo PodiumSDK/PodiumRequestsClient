@@ -5,6 +5,10 @@ import PackageDescription
 
 let package = Package(
     name: "PodiumRequestsClient",
+    platforms: [
+      .iOS(.v13),
+      .visionOS(.v1)
+    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
@@ -12,11 +16,17 @@ let package = Package(
             targets: ["PodiumRequestsClient"]
         ),
     ],
+    dependencies: [
+      .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.10.2")
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "PodiumRequestsClient"
+            name: "PodiumRequestsClient",
+            dependencies: [
+              .product(name: "Alamofire", package: "Alamofire")
+            ]
         ),
 
     ]
