@@ -17,8 +17,11 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode.app
 
-      - name: Build package
+      - name: Build library
         run: swift build --configuration debug
 
-      - name: Run tests using prebuilt artifacts
-        run: swift test --skip-build
+      - name: Build test target
+        run: swift build --configuration debug --target PodiumRequestsClientTests
+
+      - name: Run tests
+        run: swift test --skip-build --parallel
