@@ -55,7 +55,7 @@ public class PodiumRequestsClient {
     return domain.map { SessionMapper.map(from: $0) }
   }
 
-  public func getAllSessions(sessionKey: Int) async throws -> SessionModel {
+  public func getSession(sessionKey: Int) async throws -> SessionModel {
     let domain = try await request(
       endpoint: Endpoints.Sessions.getOne(sessionKey: sessionKey),
       type: SessionDomain.self

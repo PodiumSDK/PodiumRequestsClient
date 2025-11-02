@@ -25,7 +25,7 @@ extension Endpoints.Sessions: PodiumEndpoint {
     case .getAll:
       "/sessions"
     case .getOne(let sessionKey):
-      "/sessions/\(sessionKey)/cars"
+      "/sessions/\(sessionKey)"
     }
   }
 }
