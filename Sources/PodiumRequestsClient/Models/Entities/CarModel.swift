@@ -23,6 +23,12 @@ public struct CarModel: Identifiable, Equatable, Hashable {
   /// The current driver in the car.
   public let driver: DriverModel
 
+  // MARK: Lifecycle
+  public init(number: Int, driver: DriverModel) {
+    self.number = number
+    self.driver = driver
+  }
+
   // MARK: Static Methods
   /// Compare two `CarModel` using their unique number.
   public static func == (lhs: CarModel, rhs: CarModel) -> Bool {

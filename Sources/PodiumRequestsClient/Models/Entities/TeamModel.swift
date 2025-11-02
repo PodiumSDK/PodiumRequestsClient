@@ -23,4 +23,11 @@ public struct TeamModel: Identifiable {
 
   /// The team logo image URL.
   public let image: URL?
+
+  // MARK: Lifecycle
+  public init(name: String, color: Color, image: URL?) {
+    self.name = name
+    self.color = color
+    self.image = image
+  }
 }

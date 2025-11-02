@@ -8,6 +8,7 @@
 import Foundation
 
 public struct CarDataModel: Identifiable, Hashable {
+  // MARK: Properties
   /// The car data model unique identifier.
   public var id: String {
     DateHelper.toIdentifier(date: date)
@@ -33,4 +34,15 @@ public struct CarDataModel: Identifiable, Hashable {
 
   /// The DRS activation state
   public let drs: Bool?
+
+  // MARK: Lifecycle
+  public init(date: Date, brake: Int, throttle: Int, gear: Int, rpm: Int, speed: Int, drs: Bool?) {
+    self.date = date
+    self.brake = brake
+    self.throttle = throttle
+    self.gear = gear
+    self.rpm = rpm
+    self.speed = speed
+    self.drs = drs
+  }
 }

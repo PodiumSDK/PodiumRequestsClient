@@ -20,4 +20,10 @@ public struct CarLocationModel: Identifiable, Hashable {
 
   /// The car location coordinates
   public let location: Point3D
+
+  // MARK: Lifecycle
+  public init(date: Date, location: Point3D) {
+    self.date = date
+    self.location = location
+  }
 }

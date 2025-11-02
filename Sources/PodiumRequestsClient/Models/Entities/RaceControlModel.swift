@@ -32,6 +32,7 @@ public enum RaceControlFlag: String {
 }
 
 public struct RaceControlModel: Identifiable {
+  // MARK: Properties
   public var id: String {
     DateHelper.toIdentifier(date: date)
   }
@@ -47,4 +48,14 @@ public struct RaceControlModel: Identifiable {
   public let lap: Int?
 
   public let message: String
+
+  // MARK: Lifecycle
+  public init(category: RaceControlCategory, date: Date, flag: RaceControlFlag?, sector: Int?, lap: Int?, message: String) {
+    self.category = category
+    self.date = date
+    self.flag = flag
+    self.sector = sector
+    self.lap = lap
+    self.message = message
+  }
 }
