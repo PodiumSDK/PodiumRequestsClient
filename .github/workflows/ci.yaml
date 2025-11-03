@@ -33,3 +33,15 @@ jobs:
 
       - name: Run tests
         run: swift test --parallel
+
+  lint:
+    name: Lint Code
+    runs-on: macos-latest
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: cirruslabs/swiftlint-action@v1
+        with:
+          version: latest

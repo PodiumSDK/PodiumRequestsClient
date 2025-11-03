@@ -50,7 +50,14 @@ public struct RaceControlModel: Identifiable {
   public let message: String
 
   // MARK: Lifecycle
-  public init(category: RaceControlCategory, date: Date, flag: RaceControlFlag?, sector: Int?, lap: Int?, message: String) {
+  public init(
+    category: RaceControlCategory,
+    date: Date,
+    flag: RaceControlFlag?,
+    sector: Int?,
+    lap: Int?,
+    message: String
+  ) {
     self.category = category
     self.date = date
     self.flag = flag

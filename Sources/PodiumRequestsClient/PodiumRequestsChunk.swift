@@ -13,11 +13,6 @@ public struct PodiumRequestsChunk {
   public let before: Int?
 
   // MARK: Lifecycle
-  public init() {
-    self.after = nil
-    self.before = nil
-  }
-
   public init(after: Int?, before: Int?) {
     self.after = after
     self.before = before
