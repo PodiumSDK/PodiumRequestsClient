@@ -9,6 +9,7 @@ import Foundation
 
 /// All endpoints enums must conform to this `PodiumEndpoint` protocol.
 protocol PodiumEndpoint {
+  /// The URL path that'll be resolved from the enum.
   var path: String { get }
 }
 

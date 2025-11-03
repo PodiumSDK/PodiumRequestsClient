@@ -24,12 +24,12 @@ public class PodiumRequestsClient {
     endpoint: E,
     type: T.Type,
     method: HTTPMethod = .get,
-    parameters: Parameters? = nil
+    chunk: PodiumRequestsChunk? = nil
   ) async throws -> T where E: PodiumEndpoint, T: Decodable, T: Sendable {
     let task: DataRequest = AF.request(
       baseURL + endpoint.path,
       method: method,
-      parameters: parameters,
+      parameters: getChunkParameters(chunk: chunk),
       encoding: method == .get ? URLEncoding.default : JSONEncoding.default,
       headers: HTTPHeaders([
         HTTPHeader(name: "Authorization", value: "Bearer " + apiKey)
@@ -45,6 +45,14 @@ public class PodiumRequestsClient {
     }
   }
 
+  private func getChunkParameters(chunk: PodiumRequestsChunk?) -> Parameters? {
+    guard let chunk else {
+      return nil
+    }
+
+    return ["after": chunk.after, "before": chunk.before]
+  }
+
   // MARK: Public Methods
   public func getAllSessions() async throws -> [SessionModel] {
     let domain = try await request(
@@ -55,7 +63,9 @@ public class PodiumRequestsClient {
     return domain.map { SessionMapper.map(from: $0) }
   }
 
-  public func getSession(sessionKey: Int) async throws -> SessionModel {
+  public func getSession(
+    sessionKey: Int
+  ) async throws -> SessionModel {
     let domain = try await request(
       endpoint: Endpoints.Sessions.getOne(sessionKey: sessionKey),
       type: SessionDomain.self
@@ -64,16 +74,22 @@ public class PodiumRequestsClient {
     return SessionMapper.map(from: domain)
   }
 
-  public func getAllRaceControl(sessionKey: Int) async throws -> [RaceControlModel] {
+  public func getAllRaceControl(
+    sessionKey: Int,
+    chunk: PodiumRequestsChunk? = nil
+  ) async throws -> [RaceControlModel] {
     let domain = try await request(
       endpoint: Endpoints.RaceControl.getAll(sessionKey: sessionKey),
-      type: [RaceControlDomain].self
+      type: [RaceControlDomain].self,
+      chunk: chunk
     )
 
     return domain.map { RaceControlMapper.map(from: $0) }
   }
 
-  public func getAllCars(sessionKey: Int) async throws -> [CarModel] {
+  public func getAllCars(
+    sessionKey: Int
+  ) async throws -> [CarModel] {
     let domain = try await request(
       endpoint: Endpoints.Cars.getAll(sessionKey: sessionKey),
       type: [CarDomain].self
@@ -82,25 +98,37 @@ public class PodiumRequestsClient {
     return domain.map { CarMapper.map(from: $0) }
   }
 
-  public func getAllCarLocation(sessionKey: Int, car: Int) async throws -> [CarLocationModel] {
+  public func getAllCarLocations(
+    sessionKey: Int,
+    car: Int,
+    chunk: PodiumRequestsChunk? = nil
+  ) async throws -> [CarLocationModel] {
     let domain = try await request(
       endpoint: Endpoints.Cars.getLocations(sessionKey: sessionKey, driver: car),
-      type: [CarLocationDomain].self
+      type: [CarLocationDomain].self,
+      chunk: chunk
     )
 
     return domain.map { CarMapper.map(from: $0) }
   }
 
-  public func getAllCarData(sessionKey: Int, car: Int) async throws -> [CarDataModel] {
+  public func getAllCarData(
+    sessionKey: Int,
+    car: Int,
+    chunk: PodiumRequestsChunk? = nil
+  ) async throws -> [CarDataModel] {
     let domain = try await request(
       endpoint: Endpoints.Cars.getData(sessionKey: sessionKey, driver: car),
-      type: [CarDataDomain].self
+      type: [CarDataDomain].self,
+      chunk: chunk
     )
 
     return domain.map { CarMapper.map(from: $0) }
   }
 
-  public func getAllDrivers(sessionKey: Int) async throws -> [DriverModel] {
+  public func getAllDrivers(
+    sessionKey: Int
+  ) async throws -> [DriverModel] {
     let domain = try await request(
       endpoint: Endpoints.Drivers.getAll(sessionKey: sessionKey),
       type: [DriverDomain].self
@@ -109,9 +137,12 @@ public class PodiumRequestsClient {
     return domain.map { DriverMapper.map(domain: $0) }
   }
 
-  public func getDriver(sessionKey: Int, driver: Int) async throws -> DriverModel {
+  public func getDriver(
+    sessionKey: Int,
+    driver: Int
+  ) async throws -> DriverModel {
     let domain = try await request(
-      endpoint: Endpoints.Drivers.get(sessionKey: sessionKey, driver: driver),
+      endpoint: Endpoints.Drivers.getOne(sessionKey: sessionKey, driver: driver),
       type: DriverDomain.self
     )
 

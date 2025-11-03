@@ -1,5 +1,5 @@
 //
-//  Drivers.swift
+//  Endpoints+Drivers.swift
 //  PodiumRequestsClient
 //
 //  Created by Mathis Le Bonniec on 11/2/25.
@@ -18,7 +18,7 @@ extension Endpoints {
     /// - Parameters:
     ///   - sessionKey The unique session key to get all the drivers.
     ///   - driver The driver number to get.
-    case get(sessionKey: Int, driver: Int)
+    case getOne(sessionKey: Int, driver: Int)
   }
 }
 
@@ -27,7 +27,7 @@ extension Endpoints.Drivers: PodiumEndpoint {
     switch self {
     case .getAll(let sessionKey):
       "/sessions/\(sessionKey)/drivers"
-    case .get(let sessionKey, let driver):
+    case .getOne(let sessionKey, let driver):
       "/sessions/\(sessionKey)/drivers/\(driver)"
     }
   }

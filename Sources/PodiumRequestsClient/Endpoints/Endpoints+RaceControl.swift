@@ -1,5 +1,5 @@
 //
-//  RaceControl.swift
+//  Endpoints+RaceControl.swift
 //  PodiumRequestsClient
 //
 //  Created by Mathis Le Bonniec on 11/2/25.
