@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-public class PodiumRequestsClient {
+public class RequestsClient {
   // MARK: Private Properties
   private let baseURL: String
   private let apiKey: String
