@@ -24,6 +24,9 @@ let package = Package(
             name: "PodiumRequestsClient",
             dependencies: [
               .product(name: "Alamofire", package: "Alamofire")
+            ],
+            swiftSettings: [
+              .unsafeFlags(["-enable-library-evolution"])
             ]
         ),
         .testTarget(
