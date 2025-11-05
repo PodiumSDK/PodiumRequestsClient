@@ -1,5 +1,5 @@
 //
-//  PodiumRequestsClient.swift
+//  RequestsClient.swift
 //  PodiumRequestsClient
 //
 //  Created by Mathis Le Bonniec on 25/09/2024.
@@ -24,7 +24,7 @@ public class RequestsClient {
     endpoint: E,
     type: T.Type,
     method: HTTPMethod = .get,
-    chunk: PodiumRequestsChunk? = nil
+    chunk: Chunk? = nil
   ) async throws -> T where E: PodiumEndpoint, T: Decodable, T: Sendable {
     let task: DataRequest = AF.request(
       baseURL + endpoint.path,
@@ -45,7 +45,7 @@ public class RequestsClient {
     }
   }
 
-  private func getChunkParameters(chunk: PodiumRequestsChunk?) -> Parameters? {
+  private func getChunkParameters(chunk: Chunk?) -> Parameters? {
     guard let chunk else {
       return nil
     }
@@ -76,7 +76,7 @@ public class RequestsClient {
 
   public func getAllRaceControl(
     sessionKey: Int,
-    chunk: PodiumRequestsChunk? = nil
+    chunk: Chunk? = nil
   ) async throws -> [RaceControlModel] {
     let domain = try await request(
       endpoint: Endpoints.RaceControl.getAll(sessionKey: sessionKey),
@@ -101,7 +101,7 @@ public class RequestsClient {
   public func getAllCarLocations(
     sessionKey: Int,
     car: Int,
-    chunk: PodiumRequestsChunk? = nil
+    chunk: Chunk? = nil
   ) async throws -> [CarLocationModel] {
     let domain = try await request(
       endpoint: Endpoints.Cars.getLocations(sessionKey: sessionKey, driver: car),
@@ -115,7 +115,7 @@ public class RequestsClient {
   public func getAllCarData(
     sessionKey: Int,
     car: Int,
-    chunk: PodiumRequestsChunk? = nil
+    chunk: Chunk? = nil
   ) async throws -> [CarDataModel] {
     let domain = try await request(
       endpoint: Endpoints.Cars.getData(sessionKey: sessionKey, driver: car),
@@ -147,5 +147,19 @@ public class RequestsClient {
     )
 
     return DriverMapper.map(domain: domain)
+  }
+}
+
+extension RequestsClient {
+  public struct Chunk {
+    // MARK: Properties
+    public let after: Int?
+    public let before: Int?
+
+    // MARK: Lifecycle
+    public init(after: Int?, before: Int?) {
+      self.after = after
+      self.before = before
+    }
   }
 }
