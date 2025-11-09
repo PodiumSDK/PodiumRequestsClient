@@ -8,6 +8,7 @@
 import Foundation
 import Spatial
 
+/// Maps car-related domain objects to public models.
 enum CarMapper {
   /// Map a `CarDomain` into a `CarModel`.
   /// - Parameters:
@@ -53,6 +54,7 @@ enum CarMapper {
   }
 }
 
+/// Provides mock car telemetry data for previews and tests.
 enum CarMockMapper {
   static func map() -> CarTelemetryModel {
     CarTelemetryModel(
@@ -66,3 +68,4 @@ enum CarMockMapper {
     )
   }
 }
+

@@ -190,7 +190,7 @@ public class RequestsClient {
     chunk: Chunk? = nil
   ) async throws -> [CarTelemetryModel] {
     let domain = try await request(
-      endpoint: Endpoints.Cars.getData(sessionKey: sessionKey, driver: car),
+      endpoint: Endpoints.Cars.getTelemetry(sessionKey: sessionKey, driver: car),
       type: [CarTelemetryDomain].self,
       chunk: chunk
     )

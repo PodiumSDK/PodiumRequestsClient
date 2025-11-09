@@ -7,8 +7,10 @@
 
 import Foundation
 
+/// A driver participating in a session.
 public class DriverModel: Hashable, Equatable, Identifiable {
   // MARK: Properties
+  /// The unique identifier of the driver (their racing number).
   public var id: Int {
     number
   }
@@ -32,6 +34,14 @@ public class DriverModel: Hashable, Equatable, Identifiable {
   public let image: String?
 
   // MARK: Lifecycle
+  /// Creates a new driver.
+  /// - Parameters:
+  ///   - firstname: The driver's first name.
+  ///   - lastname: The driver's last name.
+  ///   - acronym: The driver's three-letter acronym.
+  ///   - number: The driver's racing number.
+  ///   - team: The driver's team.
+  ///   - image: An optional image URL string.
   public init(firstname: String, lastname: String, acronym: String, number: Int, team: TeamModel, image: String?) {
     self.firstname = firstname
     self.lastname = lastname

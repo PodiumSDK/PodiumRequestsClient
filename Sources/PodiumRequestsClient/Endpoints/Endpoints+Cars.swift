@@ -8,23 +8,23 @@
 import Foundation
 
 extension Endpoints {
+  /// Endpoints for cars.
   enum Cars {
-    /// Get all cars for a given session.
-    /// - Parameters:
-    ///   - sessionKey The unique session key to get the cars
+    /// Get all cars for a session.
+    /// - Parameter sessionKey: The session key.
     case getAll(sessionKey: Int)
 
-    /// Get all locations for a given car.
+    /// Get all locations for a car.
     /// - Parameters:
-    ///   - sessionKey The unique session key to get the car.
-    ///   - driver The unique car number to get all the locations.
+    ///   - sessionKey: The session key.
+    ///   - driver: The car number.
     case getLocations(sessionKey: Int, driver: Int)
 
-    /// Get all data for a given car.
+    /// Get all telemetry for a car.
     /// - Parameters:
-    ///   - sessionKey The unique session key to get the car.
-    ///   - driver The unique car number to get all the data.
-    case getData(sessionKey: Int, driver: Int)
+    ///   - sessionKey: The session key.
+    ///   - driver: The car number.
+    case getTelemetry(sessionKey: Int, driver: Int)
   }
 }
 
@@ -35,7 +35,7 @@ extension Endpoints.Cars: PodiumEndpoint {
       "/sessions/\(sessionKey)/cars"
     case .getLocations(let sessionKey, let driver):
       "/sessions/\(sessionKey)/cars/\(driver)/locations"
-    case .getData(let sessionKey, let driver):
+    case .getTelemetry(let sessionKey, let driver):
       "/sessions/\(sessionKey)/cars/\(driver)/data"
     }
   }

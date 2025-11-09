@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A single sampled telemetry reading for a car.
 public struct CarTelemetryModel: Identifiable, Hashable {
   // MARK: Properties
   /// The car data model unique identifier.
@@ -20,7 +21,7 @@ public struct CarTelemetryModel: Identifiable, Hashable {
   /// The brake percentage.
   public let brake: Int
 
-  /// The throttle percentage
+  /// The throttle percentage.
   public let throttle: Int
 
   /// The current car gear.
@@ -32,7 +33,7 @@ public struct CarTelemetryModel: Identifiable, Hashable {
   /// The speed of the car, in km/h.
   public let speed: Int
 
-  /// The DRS activation state
+  /// The DRS activation state.
   public let drs: Bool?
 
   // MARK: Lifecycle
@@ -46,3 +47,4 @@ public struct CarTelemetryModel: Identifiable, Hashable {
     self.drs = drs
   }
 }
+

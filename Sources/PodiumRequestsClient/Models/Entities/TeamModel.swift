@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+/// A racing team participating in a session.
 public struct TeamModel: Identifiable {
   // MARK: Properties
   /// The team unique identifier, which is here the team name.
@@ -18,7 +19,7 @@ public struct TeamModel: Identifiable {
   /// The team name.
   public let name: String
 
-  /// The team color..
+  /// The team color.
   public let color: Color
 
   /// The team logo image URL.
@@ -31,3 +32,4 @@ public struct TeamModel: Identifiable {
     self.image = image
   }
 }
+

@@ -8,13 +8,13 @@
 import Foundation
 
 extension Endpoints {
+  /// Endpoints for sessions.
   enum Sessions {
-    /// Get all session endpoint.
+    /// Get all sessions.
     case getAll
 
-    /// Get a specific session endpoint.
-    /// - Parameters:
-    ///   - sessionKey The unique session key to get.
+    /// Get a specific session.
+    /// - Parameter sessionKey: The session key.
     case getOne(sessionKey: Int)
   }
 }
