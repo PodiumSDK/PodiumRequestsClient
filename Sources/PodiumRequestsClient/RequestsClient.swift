@@ -13,7 +13,7 @@ import Alamofire
 /// `RequestsClient` provides typed access to the API endpoints for sessions, race control,
 /// cars, drivers, and related data. Each method performs network requests asynchronously
 /// and decodes the responses into strongly-typed models.
-public class RequestsClient {
+public final class RequestsClient: Sendable {
   // MARK: - Private Properties
   private let baseURL: String
   private let apiKey: String
