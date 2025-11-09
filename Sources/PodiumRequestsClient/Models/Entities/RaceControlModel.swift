@@ -11,11 +11,10 @@ import Foundation
 ///
 /// This enumeration categorizes race control updates into distinct types that
 /// can be used to filter, display, or process messages in the UI or logic layers.
-
-/// Raw Value:
-/// - Backed by `String` raw values for interoperability with external data sources or APIs.
-///   The custom initializer normalizes incoming raw strings to one of the supported categories,
-///   defaulting to `.other` when the value does not match a known case.
+///
+/// Backed by `String` raw values for interoperability with external data sources or APIs.
+/// The custom initializer normalizes incoming raw strings to one of the supported categories,
+/// defaulting to `.other` when the value does not match a known case.
 public enum RaceControlCategory: String {
   /// Indicates a message related to DRS (Drag Reduction System), such as activation or deactivation notifications.
   case drs = "Drs"
@@ -72,8 +71,6 @@ public enum RaceControlFlag: String {
 /// Use `RaceControlModel` to represent, display, and persist race control updates such as
 /// flag changes, DRS notifications, sector incidents, and general race messages. The model
 /// conforms to `Identifiable`.
-///
-/// - SeeAlso: `RaceControlCategory`, `RaceControlFlag`
 public struct RaceControlModel: Identifiable {
   // MARK: Properties
   /// A unique identifier as a string, based on the date.

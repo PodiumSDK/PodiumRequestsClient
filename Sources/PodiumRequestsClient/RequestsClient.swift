@@ -14,6 +14,15 @@ public class RequestsClient {
   private let apiKey: String
 
   // MARK: Lifecycle
+  /// Initialize a new `RequestsClient` instance by providing the API
+  /// base URL and authentication key.
+  ///
+  /// ```
+  ///  let client: RequestsClient = RequestsClient(
+  ///      baseURL: "<API_BASE_URL>",
+  ///      apiKey: "<API_KEY>"
+  ///  )
+  /// ```
   public init(baseURL: String, apiKey: String) {
     self.baseURL = baseURL
     self.apiKey = apiKey
@@ -54,6 +63,9 @@ public class RequestsClient {
   }
 
   // MARK: Public Methods
+  /// Get all sessions.
+  ///
+  /// - Returns: A list of all the available sessions.
   public func getAllSessions() async throws -> [SessionModel] {
     let domain = try await request(
       endpoint: Endpoints.Sessions.getAll,
@@ -63,6 +75,13 @@ public class RequestsClient {
     return domain.map { SessionMapper.map(from: $0) }
   }
 
+  /// Get a specific session from a given key.
+  ///
+  /// - Parameters:
+  ///   - sessionKey: A unique session key.
+  ///
+  /// - Throws: If the session cannot be found.
+  /// - Returns: The session.
   public func getSession(
     sessionKey: Int
   ) async throws -> SessionModel {
@@ -74,6 +93,14 @@ public class RequestsClient {
     return SessionMapper.map(from: domain)
   }
 
+  /// Get all the race control messages for a session.
+  ///
+  /// - Parameters:
+  ///   - sessionKey: The session from where to get all the race control messages.
+  ///   - chunk: An optional chunk used to narrow the search.
+  ///
+  /// - Throws: If the session cannot be found.
+  /// - Returns: A list of race control messages.
   public func getAllRaceControl(
     sessionKey: Int,
     chunk: Chunk? = nil
@@ -87,6 +114,13 @@ public class RequestsClient {
     return domain.map { RaceControlMapper.map(from: $0) }
   }
 
+  /// Get all the car for a session.
+  ///
+  /// - Parameters:
+  ///   - sessionKey: The session from where to get all the cars.
+  ///
+  /// - Throws: If the session cannot be found.
+  /// - Returns: A list of all the cars present during the session.
   public func getAllCars(
     sessionKey: Int
   ) async throws -> [CarModel] {
@@ -151,9 +185,13 @@ public class RequestsClient {
 }
 
 extension RequestsClient {
+  /// Represents a chunk of data.
   public struct Chunk {
     // MARK: Properties
+    /// The seconds count from where to start retrieving the data.
     public let after: Int?
+
+    /// The seconds count from where to stop retrieving the data.
     public let before: Int?
 
     // MARK: Lifecycle
