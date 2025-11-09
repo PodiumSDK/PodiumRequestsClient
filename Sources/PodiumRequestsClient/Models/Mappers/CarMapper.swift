@@ -36,12 +36,12 @@ enum CarMapper {
     )
   }
 
-  /// Map a `CarDataDomain` into a `CarDataModel`.
+  /// Map a `CarTelemetryDomain` into a `CarTelemetryModel`.
   /// - Parameters:
-  ///   - domain the car data domain object
-  /// - Returns: A car data model.
-  static func map(from domain: CarDataDomain) -> CarDataModel {
-    CarDataModel(
+  ///   - domain the car telemetry domain object
+  /// - Returns: A car telemetry model.
+  static func map(from domain: CarTelemetryDomain) -> CarTelemetryModel {
+    CarTelemetryModel(
       date: domain.date,
       brake: domain.brake,
       throttle: domain.throttle,
@@ -54,8 +54,8 @@ enum CarMapper {
 }
 
 enum CarMockMapper {
-  static func map() -> CarDataModel {
-    CarDataModel(
+  static func map() -> CarTelemetryModel {
+    CarTelemetryModel(
       date: .now,
       brake: 0,
       throttle: 78,

@@ -184,14 +184,14 @@ public class RequestsClient {
   ///   - chunk: An optional `Chunk` to filter data by time.
   /// - Returns: A list of car telemetry data entries.
   /// - Throws: An error if the data cannot be fetched or decoded.
-  public func getAllCarData(
+  public func getAllCarTelemetry(
     sessionKey: Int,
     car: Int,
     chunk: Chunk? = nil
-  ) async throws -> [CarDataModel] {
+  ) async throws -> [CarTelemetryModel] {
     let domain = try await request(
       endpoint: Endpoints.Cars.getData(sessionKey: sessionKey, driver: car),
-      type: [CarDataDomain].self,
+      type: [CarTelemetryDomain].self,
       chunk: chunk
     )
 

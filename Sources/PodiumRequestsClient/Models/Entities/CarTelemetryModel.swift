@@ -1,5 +1,5 @@
 //
-//  CarDataModel.swift
+//  CarTelemetryModel.swift
 //  PodiumRequestsClient
 //
 //  Created by Mathis Le Bonniec on 6/26/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CarDataModel: Identifiable, Hashable {
+public struct CarTelemetryModel: Identifiable, Hashable {
   // MARK: Properties
   /// The car data model unique identifier.
   public var id: String {

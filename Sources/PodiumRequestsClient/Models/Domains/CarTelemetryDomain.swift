@@ -1,5 +1,5 @@
 //
-//  CarDataDomain.swift
+//  CarTelemetryDomain.swift
 //  PodiumRequestsClient
 //
 //  Created by Mathis Le Bonniec on 6/26/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CarDataDomain: Decodable {
+struct CarTelemetryDomain: Decodable {
   /// The date of the car data.
   let date: Date
 
