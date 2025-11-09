@@ -50,75 +50,15 @@ import PodiumRequestsClient
 ```swift
 let client = PodiumRequestsClient(
     baseURL: "<API_BASE_URL>",
-    apiKey: "<YOUR_API_KEY>"
+    apiKey: "<API_KEY>"
 )
 ```
 
 ---
 
-### Fetch all sessions
+## Documentation
 
-```swift
-let sessions = try await client.getAllSessions()
-```
-
-Returns an array of `SessionModel`.
-
----
-
-### Fetch a specific session
-
-```swift
-let session = try await client.getSession(sessionKey: 1234)
-```
-
----
-
-### Fetch race control messages
-
-```swift
-let raceControl = try await client.getAllRaceControl(sessionKey: 1234)
-```
-
----
-
-### Fetch cars
-
-```swift
-let cars = try await client.getAllCars(sessionKey: 1234)
-```
-
----
-
-### Fetch car locations
-
-```swift
-let locations = try await client.getAllCarLocation(sessionKey: 1234, car: 16)
-```
-
----
-
-### Fetch car telemetry data
-
-```swift
-let data = try await client.getAllCarData(sessionKey: 1234, car: 16)
-```
-
----
-
-### Fetch drivers
-
-```swift
-let drivers = try await client.getAllDrivers(sessionKey: 1234)
-```
-
-or a specific one:
-
-```swift
-let driver = try await client.getDriver(sessionKey: 1234, driver: 44)
-```
-
----
+You can find the full documentation for **PodiumRequestsClient** on the [DocC](https://podiumsdk.github.io/PodiumRequestsClient/).
 
 ## Architecture
 

@@ -1,7 +1,10 @@
-name: Deploy DocC
+name: Documentation
 on:
   push:
     branches: ["main"]
+    paths:
+      - "Source/**/*.swift"
+      - ".github/workflows/documentation.yaml"
 
 permissions:
   contents: read
@@ -14,15 +17,15 @@ concurrency:
 
 jobs:
   deploy:
-    name: Deploy DocC to GitHub Pages
+    name: Deploy
     runs-on: macos-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
       - name: Build DocC
         run: |
           xcodebuild docbuild -scheme PodiumRequestsClient \
