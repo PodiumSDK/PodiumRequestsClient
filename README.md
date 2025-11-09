@@ -45,10 +45,8 @@ import PodiumRequestsClient
 
 ## Usage
 
-### Initialize the client
-
 ```swift
-let client = PodiumRequestsClient(
+let client: RequestsClient = RequestsClient(
     baseURL: "<API_BASE_URL>",
     apiKey: "<API_KEY>"
 )
