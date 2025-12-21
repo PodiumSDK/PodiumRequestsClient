@@ -12,4 +12,5 @@ extension Tag {
   @Tag static var cars: Tag
   @Tag static var drivers: Tag
   @Tag static var leaderboard: Tag
+  @Tag static var weather: Tag
 }

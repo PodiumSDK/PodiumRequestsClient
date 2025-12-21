@@ -233,6 +233,26 @@ public final class RequestsClient: Sendable {
 
     return DriverMapper.map(domain: domain)
   }
+
+    /// Retrieves all the weather updates for a given session.
+    ///
+    /// - Parameters:
+    ///   - sessionKey: The session key.
+    ///   - chunk: An optional `Chunk` to filter data by time.
+    /// - Returns: A list of weather updates.
+    /// - Throws: An error if the data cannot be fetched or decoded.
+    public func getAllWeatherUpdates(
+        sessionKey: Int,
+        chunk: Chunk? = nil
+    ) async throws -> [WeatherModel] {
+        let domain = try await request(
+            endpoint: Endpoints.Weather.getAll(sessionKey: sessionKey),
+            type: [WeatherDomain].self,
+            chunk: chunk
+        )
+
+        return domain.map { WeatherMapper.map(from: $0) }
+    }
 }
 
 extension RequestsClient {

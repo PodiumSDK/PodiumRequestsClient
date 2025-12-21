@@ -15,3 +15,12 @@ extension Endpoints {
         case getAll(sessionKey: Int)
     }
 }
+
+extension Endpoints.Weather: PodiumEndpoint {
+    var path: String {
+        switch self {
+        case .getAll(let sessionKey):
+            "/sessions/\(sessionKey)/weather"
+        }
+    }
+}
