@@ -253,6 +253,19 @@ public final class RequestsClient: Sendable {
 
         return domain.map { WeatherMapper.map(from: $0) }
     }
+  
+    public func getAllIntervals(
+      sessionKey: Int,
+      chunk: Chunk? = nil
+    ) async throws -> [IntervalModel] {
+      let domain = try await request(
+        endpoint: Endpoints.Interval.getAll(sessionKey: sessionKey),
+        type: [IntervalDomain].self,
+        chunk: chunk
+      )
+      
+      return domain.map { IntervalMapper.map(from: $0) }
+    }
 }
 
 extension RequestsClient {
