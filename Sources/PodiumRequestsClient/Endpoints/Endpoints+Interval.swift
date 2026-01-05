@@ -20,7 +20,7 @@ extension Endpoints.Interval: PodiumEndpoint {
     var path: String {
         switch self {
         case .getAll(let sessionKey):
-            "/sessions/\(sessionKey)/interval"
+            "/sessions/\(sessionKey)/intervals"
         }
     }
 }
