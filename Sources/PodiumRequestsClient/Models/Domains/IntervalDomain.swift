@@ -10,6 +10,6 @@ import Foundation
 struct IntervalDomain: Decodable {
   let date: Date
   let driver: Int
-  let interval: Float
+  let interval: Float?
   let leader: Float
 }

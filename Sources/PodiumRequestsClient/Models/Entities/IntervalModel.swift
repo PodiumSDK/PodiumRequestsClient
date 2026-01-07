@@ -20,7 +20,7 @@ public struct IntervalModel: Equatable {
   public let driver: Int
 
   /// The interval to the reference driver.
-  public let interval: Float
+  public let interval: Float?
 
   /// The interval to the session leader.
   public let leader: Float
@@ -32,7 +32,7 @@ public struct IntervalModel: Equatable {
   ///   - driver: The driver identifier.
   ///   - interval: The time interval to the reference driver.
   ///   - leader: The time interval to the session leader.
-  public init(date: Date, driver: Int, interval: Float, leader: Float) {
+  public init(date: Date, driver: Int, interval: Float?, leader: Float) {
     self.date = date
     self.driver = driver
     self.interval = interval
