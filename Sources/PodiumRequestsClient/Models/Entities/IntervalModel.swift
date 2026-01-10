@@ -11,7 +11,11 @@ import Foundation
 ///
 /// An interval represents the time difference between a driver and another
 /// reference, typically the leader, at a specific moment.
-public struct IntervalModel: Equatable {
+public struct IntervalModel: PodiumModel {
+  public var id: String {
+    DateHelper.toIdentifier(date: date) + String(driver)
+  }
+
   // MARK: Properties
   /// The date at which the interval was recorded.
   public let date: Date

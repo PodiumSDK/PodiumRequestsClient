@@ -10,8 +10,12 @@ import Foundation
 /// A model representing weather conditions at a specific time and location.
 ///
 /// `WeatherModel` encapsulates the meteorological data relevant for a particular instant, such as temperature, humidity, pressure, wind, and rainfall presence.
-public struct WeatherModel {
+public struct WeatherModel: PodiumModel {
     // MARK: Properties
+    public var id: String {
+        DateHelper.toIdentifier(date: date)
+    }
+
     /// The date and time for which the weather data is valid.
     public let date: Date
 
@@ -39,10 +43,24 @@ public struct WeatherModel {
         self.temperature = temperature
         self.wind = wind
     }
+
+    // MARK: Methods
+    public func hash(into hasher: inout Hasher) {
+
+    }
+
+    public static func == (lhs: WeatherModel, rhs: WeatherModel) -> Bool {
+      lhs.date == rhs.date &&
+      lhs.humidity == rhs.humidity &&
+      lhs.pressure == rhs.pressure &&
+      lhs.rainfall == rhs.rainfall &&
+      lhs.temperature == rhs.temperature &&
+      lhs.wind == rhs.wind
+    }
 }
 
 extension WeatherModel {
-    public struct Temperature {
+  public struct Temperature: Equatable {
         public let track: Double
 
         public let air: Double
@@ -53,7 +71,7 @@ extension WeatherModel {
         }
     }
 
-    public struct Wind {
+  public struct Wind: Equatable {
         public let direction: Double
 
         public let speed: Double

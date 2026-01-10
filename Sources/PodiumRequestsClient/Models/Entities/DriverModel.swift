@@ -8,7 +8,7 @@
 import Foundation
 
 /// A driver participating in a session.
-public class DriverModel: Hashable, Equatable, Identifiable {
+public class DriverModel: PodiumModel {
   // MARK: Properties
   /// The unique identifier of the driver (their racing number).
   public var id: Int {

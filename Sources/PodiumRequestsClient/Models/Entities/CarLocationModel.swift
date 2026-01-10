@@ -9,7 +9,7 @@ import Foundation
 import Spatial
 
 /// A single sampled location of a car.
-public struct CarLocationModel: Identifiable, Hashable {
+public struct CarLocationModel: Identifiable, PodiumModel {
   // MARK: Computed Properties
   /// A stable identifier derived from the `date` using `DateHelper.toIdentifier(date:)`.
   public var id: String {

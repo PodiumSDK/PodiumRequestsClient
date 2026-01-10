@@ -10,7 +10,7 @@ import Foundation
 /// Describe a session, with an ID, location, name, start and end.
 /// A session can be  a race, qualifications, free practice etc.
 @Observable
-public class SessionModel: Identifiable, Equatable {
+public class SessionModel: PodiumModel {
   // MARK: Properties
   /// The session key.
   public var key: Int
@@ -44,6 +44,14 @@ public class SessionModel: Identifiable, Equatable {
   }
 
   // MARK: Methods
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(key)
+    hasher.combine(location)
+    hasher.combine(name)
+    hasher.combine(start)
+    hasher.combine(end)
+  }
+
   /// Compare two `SessionModel` using their `key` property.
   public static func == (lhs: SessionModel, rhs: SessionModel) -> Bool {
     lhs.key == rhs.key

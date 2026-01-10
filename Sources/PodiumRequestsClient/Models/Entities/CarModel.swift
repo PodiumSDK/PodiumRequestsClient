@@ -9,7 +9,7 @@ import Foundation
 
 /// Represent a car during a session.
 /// - Note: The car is identified by its `number` property.
-public struct CarModel: Identifiable, Equatable, Hashable {
+public struct CarModel: PodiumModel {
   // MARK: Computed Properties
   /// The car unique identifier.
   public var id: Int {

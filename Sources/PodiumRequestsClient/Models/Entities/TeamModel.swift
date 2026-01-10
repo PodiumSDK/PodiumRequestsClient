@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 /// A racing team participating in a session.
-public struct TeamModel: Identifiable {
+public struct TeamModel: PodiumModel {
   // MARK: Properties
   /// The team unique identifier, which is here the team name.
   public var id: String {

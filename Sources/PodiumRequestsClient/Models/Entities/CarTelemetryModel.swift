@@ -8,7 +8,7 @@
 import Foundation
 
 /// A single sampled telemetry reading for a car.
-public struct CarTelemetryModel: Identifiable, Hashable {
+public struct CarTelemetryModel: PodiumModel {
   // MARK: Properties
   /// The car data model unique identifier.
   public var id: String {
