@@ -9,14 +9,14 @@ import Foundation
 
 enum DriverMapper {
   /// Map a `DriverDomain` into a `DriverDomain`.
-  static func map(domain from: DriverDomain) -> DriverModel {
+  static func map(from domain: DriverDomain) -> DriverModel {
     DriverModel(
-      firstname: from.firstname,
-      lastname: from.lastname,
-      acronym: from.acronym,
-      number: from.number,
-      team: TeamMapper.map(from: from.team),
-      image: from.image
+      firstname: domain.firstname,
+      lastname: domain.lastname,
+      acronym: domain.acronym,
+      number: domain.number,
+      team: TeamMapper.map(from: domain.team),
+      image: domain.image
     )
   }
 }

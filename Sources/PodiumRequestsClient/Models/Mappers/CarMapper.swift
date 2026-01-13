@@ -17,7 +17,7 @@ enum CarMapper {
   static func map(from domain: CarDomain) -> CarModel {
     CarModel(
       number: domain.number,
-      driver: DriverMapper.map(domain: domain.driver)
+      driver: DriverMapper.map(from: domain.driver)
     )
   }
 
