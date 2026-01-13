@@ -212,7 +212,7 @@ public final class RequestsClient: Sendable {
       type: [DriverDomain].self
     )
 
-    return domain.map { DriverMapper.map(domain: $0) }
+    return domain.map { DriverMapper.map(from: $0) }
   }
 
   /// Retrieves a specific driver by ID from a session.
@@ -231,7 +231,7 @@ public final class RequestsClient: Sendable {
       type: DriverDomain.self
     )
 
-    return DriverMapper.map(domain: domain)
+    return DriverMapper.map(from: domain)
   }
 
     /// Retrieves all the weather updates for a given session.
